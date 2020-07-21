@@ -1,0 +1,31 @@
+.Header {
+  height: 60px;
+  background-color: #87ceeb;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  &__top {
+    color: #ffffff;
+    font-size: 30px;
+    padding: 0 30px;
+    text-decoration: none;
+  }
+  &__search {
+    color: #ffffff;
+    font-size: 20px;
+    padding: 0 10px;
+    text-decoration: none;
+  }
+  &__trend {
+    color: #ffffff;
+    font-size: 20px;
+    padding: 0 10px;
+    text-decoration: none;
+  }
+  &__option {
+    color: #ffffff;
+    font-size: 20px;
+    padding: 0 10px;
+    text-decoration: none;
+  }
+}
