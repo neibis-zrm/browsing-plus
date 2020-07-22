@@ -1,6 +1,7 @@
 class TweetsController < ApplicationController
   def index
     @tweets = []
+    @keyword = ""
     respond_to do |format|
       format.html 
     end
@@ -12,9 +13,11 @@ class TweetsController < ApplicationController
       config.consumer_secret = Rails.application.credentials.development[:twitter_consumer_secret]
     end
     @tweets = []
+    @keyword = ""
     since_id = nil
     # 検索ワードが存在したらツイートを取得
     if params[:keyword].present?
+      @keyword = params[:keyword]
       # リツイートを除く、検索ワードにひっかかった最新10件のツイートを取得する
       tweets = client.search(params[:keyword], count: 10, result_type: "recent", exclude: "retweets", since_id: since_id)
       # 取得したツイートをモデルに渡す

@@ -56,5 +56,8 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # include haml-rails gem, Referenced haml-rails README.md
 gem "haml-rails", "~> 2.0"
 
+# include pry-rails gem
+gem 'pry-rails'
+
 # include twitter gem
 gem "twitter"
