@@ -1,4 +1,4 @@
 Rails.application.routes.draw do
-  root to: "browses#index"
-  resources :browses, only: [:index]
+  root to: "tweets#index"
+  resources :tweets, only: [:index]
 end
