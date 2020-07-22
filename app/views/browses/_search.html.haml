@@ -1,0 +1,8 @@
+.Search
+  = form_with url: "#", local: true, class: "Search__format" do |form|
+    = form.text_field :body, placeholder: "検索したい言葉を入力", class: "Search__format--body"
+    = form.submit "検索", class: "Search__format--btm"
+.ShowField
+  .ShowField__line
+    = link_to "#", class: "ShowField__line--link" do
+      http://aaaaaa
