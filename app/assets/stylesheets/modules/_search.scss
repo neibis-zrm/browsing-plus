@@ -33,14 +33,14 @@
   justify-content: left;
   overflow: scroll;
   &__line {
-    height: 50px;
+    height: 80px;
     width: 500px;
     border: 1px solid #000000;
     margin: 20px 0;
-    text-align: right;
+    text-align: left;
     &--link {
-      line-height: 50px;
-      font-size: 14px;
+      height: 80px;
+      font-size: 12px;
     }
   }
 }

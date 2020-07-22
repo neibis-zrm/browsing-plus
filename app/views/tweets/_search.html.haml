@@ -1,8 +1,10 @@
 .Search
-  = form_with url: "#", local: true, class: "Search__format" do |form|
-    = form.text_field :body, placeholder: "検索したい言葉を入力", class: "Search__format--body"
+  = form_with url: search_tweets_path, local: true, method: :get, class: "Search__format" do |form|
+    = form.text_field :keyword, placeholder: "検索したい言葉を入力", class: "Search__format--body"
     = form.submit "検索", class: "Search__format--btm"
 .ShowField
-  .ShowField__line
-    = link_to "#", class: "ShowField__line--link" do
-      http://aaaaaa
+  - @tweets.each_with_index do |tweet, i|
+    .ShowField__line
+      .ShowField__line--link
+        = tweet.contents
+        -# = link_to "#", class: "ShowField__line--link" do
