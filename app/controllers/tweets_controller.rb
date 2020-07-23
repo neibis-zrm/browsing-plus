@@ -4,22 +4,21 @@ class TweetsController < ApplicationController
     cookies[:history_keyword] = ""
     history_check()
     @keywords = cookies[:history_keyword]
+    @keyword = ""
     respond_to do |format|
       format.html 
     end
   end
 
   def search
-    client = Twitter::REST::Client.new do |config|
-      config.consumer_key = Rails.application.credentials.development[:twitter_consumer_key]
-      config.consumer_secret = Rails.application.credentials.development[:twitter_consumer_secret]
-    end
+    client = access_key()
     @tweets = []
     history_check()
     @keywords = cookies[:history_keyword]
     since_id = nil
     # 検索ワードが存在したらツイートを取得
     if params[:keyword].present?
+      @keyword = params[:keyword]
       cookies[:history_keyword] << params[:keyword]
       @keywords = cookies[:history_keyword]
       # リツイートを除く、検索ワードにひっかかった最新10件のツイートを取得する
@@ -28,7 +27,9 @@ class TweetsController < ApplicationController
       tweets.take(10).each do |tw|
         if (tw.full_text =~ /http:\/\/|https:\/\//) then
           tweet = Tweet.new(tw.full_text)
-          @tweets << tweet
+          unless (tweet.hyperlink =~ /https:\/\/twitter.com/) then
+            @tweets << tweet
+          end
         end
       end
     end
@@ -38,6 +39,14 @@ class TweetsController < ApplicationController
   end
 
   private
+
+  def access_key()
+    client = Twitter::REST::Client.new do |config|
+      config.consumer_key = Rails.application.credentials.development[:twitter_consumer_key]
+      config.consumer_secret = Rails.application.credentials.development[:twitter_consumer_secret]
+    end
+    return client
+  end
 
   def history_check()
     if (cookies[:history_keyword] == "") then
