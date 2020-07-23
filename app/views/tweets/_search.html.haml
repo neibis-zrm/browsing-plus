@@ -1,11 +1,12 @@
-.Search
-  = form_with url: search_tweets_path, local: true, method: :get, class: "Search__format" do |form|
-    = form.text_field :keyword, placeholder: "検索したい言葉を入力", class: "Search__format--body", value: @keyword
-    = form.submit "検索", class: "Search__format--btm"
-.ShowField
-  - @tweets.each_with_index do |tweet, i|
-    .ShowField__line
-      = link_to "#{tweet.hyperlink}", only_path: false, target: :_blank, class: "ShowField__line--link" do
-        = tweet.hyperlink
-      .ShowField__line--text
-        = tweet.contents
+.Warpper__Search
+  .Search
+    = form_with url: search_tweets_path, local: true, method: :get, class: "Search__format" do |form|
+      = form.text_field :keyword, placeholder: "検索したい言葉を入力", class: "Search__format--body", value: @keyword
+      = form.submit "検索", class: "Search__format--btm"
+  .ShowField
+    - @tweets.each_with_index do |tweet, i|
+      .ShowField__line
+        = link_to "#{tweet.hyperlink}", only_path: false, target: :_blank, class: "ShowField__line--link" do
+          = tweet.hyperlink
+        .ShowField__line--text
+          = tweet.contents

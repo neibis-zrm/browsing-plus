@@ -1,7 +1,15 @@
 @import "header";
 @import "search";
+@import "history";
 
 .Wrapper {
   height: 100vh;
-  width:100vw;
+  width: 100vw;
+  &__main {
+    display: flex;
+  }
+  &__Search {
+    background-color: #303050;
+    display: block;
+  }
 }

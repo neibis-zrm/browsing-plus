@@ -1,11 +1,13 @@
 .Search {  
-  height: 80px;
+  height: 78px;
+  width: calc(100vw - 300px);
   &__format {
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 20px 0;
-    background-color: #f5f5f5;
+    background-color: #90bbff;
+    // background-color: #f5f5f5;
     vertical-align: baseline;
     &--body {
       width: 400px;
@@ -25,8 +27,9 @@
   }
 }
 .ShowField {
-  height: calc(100% - 140px);
-  background-color: #aaaaaa;
+  height: calc(100vh - 138px);
+  width: calc(100vw - 300px);
+  background-color: #202030;
   display: flex;
   flex-direction: column;
   align-items: center;
