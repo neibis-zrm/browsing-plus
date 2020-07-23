@@ -1,5 +1,7 @@
 .History
-  .History__item
-  .History__item
-  .History__item
-  .History__item
+  .History__title
+    履歴
+  - @keywords.each do |keyword|
+    .History__item
+      = link_to search_tweets_path(keyword: keyword), class: "History__item--link" do
+        = keyword
