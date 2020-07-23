@@ -5,7 +5,7 @@
 .ShowField
   - @tweets.each_with_index do |tweet, i|
     .ShowField__line
-      = link_to "#{tweet.hyperlink}", only_path: false, class: "ShowField__line--link" do
+      = link_to "#{tweet.hyperlink}", only_path: false, target: :_blank, class: "ShowField__line--link" do
         = tweet.hyperlink
       .ShowField__line--text
         = tweet.contents

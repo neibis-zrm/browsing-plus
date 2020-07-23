@@ -22,8 +22,10 @@ class TweetsController < ApplicationController
       tweets = client.search(params[:keyword], count: 10, result_type: "recent", exclude: "retweets", since_id: since_id)
       # 取得したツイートをモデルに渡す
       tweets.take(10).each do |tw|
-        tweet = Tweet.new(tw.full_text)
-        @tweets << tweet
+        if tw.full_text =~ /http:\/\/|https:\/\//
+          tweet = Tweet.new(tw.full_text)
+          @tweets << tweet
+        end
       end
     end
     respond_to do |format|
