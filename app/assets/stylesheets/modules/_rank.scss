@@ -1,0 +1,27 @@
+.Rank {
+  height: calc(100vh - 60px);
+  width: 100%;
+  background-color: #202030;
+  overflow: scroll;
+  &__title {
+    height: 40px;
+    line-height: 40px;
+    background-color: #ccffff;
+    text-align: left;
+    padding-left: 20px;
+    border: 1px solid #808080;
+  }
+  &__item {
+    height: 60px;
+    line-height: 60px;
+    background-color: #d0ffd0;
+    border: 1px solid #808080;
+    text-align: left;
+    padding-left: 20px;
+    &--link {
+      color: #080808;
+      text-decoration: none;
+      font-size: 16px;
+    }
+  } 
+}

@@ -5,4 +5,5 @@ Rails.application.routes.draw do
       get 'search'
     end
   end
+  resources :trends, only: [:index]
 end
