@@ -22,7 +22,7 @@ class TweetsController < ApplicationController
       cookies[:history_keyword] << params[:keyword]
       @keywords = cookies[:history_keyword]
       # リツイートを除く、検索ワードにひっかかった最新10件のツイートを取得する
-      tweets = client.search(params[:keyword], count: 10, result_type: "recent", exclude: "retweets", since_id: since_id)
+      tweets = client.search(params[:keyword], count: 100, result_type: "recent", exclude: "retweets", since_id: since_id)
       # 取得したツイートをモデルに渡す
       tweets.take(10).each do |tw|
         if (tw.full_text =~ /http:\/\/|https:\/\//) then

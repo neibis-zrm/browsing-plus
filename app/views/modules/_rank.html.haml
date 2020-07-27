@@ -1,11 +1,12 @@
 .Rank
   .Rank__title
-    in Japan
-  .Rank__item
-    トレンド1
-  .Rank__item
-    トレンド2
-  .Rank__item
-    トレンド3
-  .Rank__item
-    トレンド4
+    - @trendtree.each do |trend|
+      - if trend[:region] == region
+        = region
+  .Rank__field
+    - @trendtree.each do |trend|
+      - if trend[:region] == region
+        - trend[:trends].each do |trendname|
+          .Rank__field__item
+            = link_to search_tweets_path(keyword: trendname),class: "Rank__field--link" do
+              = trendname
