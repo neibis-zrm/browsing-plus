@@ -1,0 +1,38 @@
+.Option {
+  height: 100%;
+  width: 100%;
+  background-color: #202030;
+  &__field{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  &__title{
+    position: relative;
+    right: 155px;
+    color: #eeeeee;
+    padding-top: 10px;
+  }
+  &__list{
+    border: 1px solid #404040;
+    border-radius: 5px;
+    background-color: #303030;
+    margin: 10px auto;
+    // height: 150px;
+    width: 400px;
+  }
+  &__item {
+    line-height: 50px;
+    &--name{
+      color: #eeeeee;
+      width: 200px;
+      padding-left: 10px;
+    }
+  }
+  &__btm{
+    position: relative;
+    right: 170px;
+    margin-top: 10px;
+  }
+}

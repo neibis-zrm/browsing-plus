@@ -1,0 +1,38 @@
+.Option
+  = form_with url: "#", class: "Option__format" do |form|
+    .Option__field
+      .Option__title
+        検索設定
+      %ul.Option__list
+        %table.Option__table
+          %tr.Option__item
+            %th.Option__item--name
+              検索件数
+            %th.Option__item--value
+              = form.number_field :serachvalue, in: 1.0..100.0, step: 1, value: 10
+          %tr.Option__item
+            %th.Option__item--name
+              並び順
+            %th.Option__item--value
+              = form.select :searchorder ,options_for_select([['新しい順', 1],['リツイート順', 2]])
+          %tr.Option__item
+            %th.Option__item--name
+              httpの表示
+            %th.Option__item--value
+              = form.check_box :searchdisplay, checked:"checked", class: "Option__item--knob"
+    .Option__field
+      .Option__title
+        画面設定
+      %ul.Option__list
+        %table.Option__table
+          %tr.Option__item
+            %th.Option__item--name
+              背景色
+            %th.Option__item--value
+              = form.select :displaybgc ,options_for_select([['ダーク', 1],['ブルー', 2],['ホワイト',3]])
+          %tr.Option__item
+            %th.Option__item--name
+              履歴を空にする
+            %th.Option__item--value
+              = form.check_box :historyempty, class: "Option__item--confirm"
+      = form.submit "設定", name: nil, class: "Option__btm"
