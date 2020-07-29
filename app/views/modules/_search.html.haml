@@ -5,8 +5,8 @@
       = form.submit "検索", name: nil, class: "Search__format--btm"
   .ShowField
     - @tweets.each_with_index do |tweet, i|
-      .ShowField__line
-        = link_to "#{tweet.hyperlink}", only_path: false, target: :_blank, class: "ShowField__line--link" do
+      .ShowField__line{data: {contents: tweet.contents}}
+        = link_to "#{tweet.hyperlink}", only_path: false, target: :_blank, title: "ツールチップ", class: "ShowField__line--link" do
           = tweet.hyperlink
         .ShowField__line--text
-          = tweet.contents
+          = tweet.title

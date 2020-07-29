@@ -61,3 +61,10 @@ gem 'pry-rails'
 
 # include twitter gem
 gem "twitter"
+
+# include jQuery gem
+gem 'jquery-rails'
+gem 'jquery-ui-rails'
+
+# include Nokogiri gem
+gem 'nokogiri'

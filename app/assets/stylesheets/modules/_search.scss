@@ -30,27 +30,40 @@
   height: calc(100vh - 138px);
   width: calc(100vw - 300px);
   background-color: #202030;
-  display: flex;
-  flex-direction: column;
+  // display: flex;
+  // flex-direction: column;
   align-items: center;
-  justify-content: left;
+  justify-content: center;
   overflow: scroll;
   &__line {
     background-color: #f5f5f5;
     height: 80px;
     width: 500px;
     border: 1px solid #87ceeb;
-    margin: 20px 0;
+    margin: 20px auto;
     text-align: right;
     overflow: hidden;
     &--link {
+      display: block;
       word-wrap: break-word;
       line-height: 24px;
+      height: 48px;
       font-size:16px;
+      overflow: hidden;
     }
     &--text {
+      display: block;
       font-size: 6px;
       text-align: left;
+      overflow: hidden;
     }
   }
+}
+.ui-helper-hidden-accessible {
+  display: none;
+}
+.ui-tooltip {
+  font-size: 12px;
+  background: #e7ce98;
+  margin-top: 30px;
 }
