@@ -68,3 +68,8 @@ gem 'jquery-ui-rails'
 
 # include Nokogiri gem
 gem 'nokogiri'
+
+# include unicorn gem
+group :production do
+  gem 'unicorn', '5.4.1'
+end
