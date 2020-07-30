@@ -7,4 +7,5 @@ Rails.application.routes.draw do
   end
   resources :trends, only: [:index]
   resources :options, only: [:index]
+  resource :options, only: [:create]
 end
