@@ -1,7 +1,7 @@
 .Option {
   height: 100%;
   width: 100%;
-  background-color: #202030;
+  background-color: var(--back-color);
   &__field{
     display: flex;
     flex-direction: column;

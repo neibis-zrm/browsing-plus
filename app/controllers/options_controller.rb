@@ -2,10 +2,15 @@ class OptionsController < ApplicationController
   def index
     # cookies[:option] = nil
     @setoptions = setvalue_check()
-    if @setoptions[:searchdisplay] == "1" then
+    if @setoptions[:searchdisplay] == 1 then
       @searchdisplay_check = "checked"
     else
       @searchdisplay_check = ""
+    end
+
+    respond_to do |format|
+      format.html
+      format.json
     end
   end
 
@@ -19,8 +24,11 @@ class OptionsController < ApplicationController
 
     cookies[:option] = cookiestr
 
-    binding.pry
-    redirect_to options_path
+    respond_to do |format|
+      format.html { redirect_to options_path }
+      format.json
+    end
+    
   end
 
   private
@@ -38,16 +46,16 @@ class OptionsController < ApplicationController
     begin      
       cookies[:option].split("&").each do |optionname|
         if optionname.split("=")[0] == "searchvalue"
-          setoptions[:searchvalue] = optionname.split("=")[1]
+          setoptions[:searchvalue] = optionname.split("=")[1].to_i
         end
         if optionname.split("=")[0] == "searchorder"
-          setoptions[:searchorder] = optionname.split("=")[1]
+          setoptions[:searchorder] = optionname.split("=")[1].to_i
         end
         if optionname.split("=")[0] == "searchdisplay"
-          setoptions[:searchdisplay] = optionname.split("=")[1]
+          setoptions[:searchdisplay] = optionname.split("=")[1].to_i
         end
         if optionname.split("=")[0] == "displaybgc"
-          setoptions[:displaybgc] = optionname.split("=")[1]
+          setoptions[:displaybgc] = optionname.split("=")[1].to_i
         end
       end
     rescue => exception
