@@ -1,7 +1,7 @@
 class TweetsController < ApplicationController
   def index
     @tweets = []
-    # cookies[:history_keyword] = ""
+    # cookies[:history_keyword] = nil
     history_check()
     @keywords = cookies[:history_keyword]
     @keyword = ""
@@ -49,7 +49,8 @@ class TweetsController < ApplicationController
   end
 
   def history_check()
-    if (cookies[:history_keyword] == "") then
+
+    if (cookies[:history_keyword] == "") || (cookies[:history_keyword] == nil) then
       cookies[:history_keyword] = []
     else
       cookies[:history_keyword] = cookies[:history_keyword].split("&")
