@@ -21,8 +21,9 @@ class Tweet < ApplicationRecord
         @hyperlink = expand_url(hyperlink.to_s)
         @title = expand_node(@hyperlink.to_s)
       else
-        @contents = contents
+        @contents = ""
         @hyperlink = ""
+        @title = contents
       end
     end
   rescue => error

@@ -24,6 +24,11 @@ class OptionsController < ApplicationController
 
     cookies[:option] = cookiestr
 
+    #履歴の削除
+    if params[:historyempty] == "1" then
+      cookies[:history_keyword] = ""
+    end
+
     respond_to do |format|
       format.html { redirect_to options_path }
       format.json

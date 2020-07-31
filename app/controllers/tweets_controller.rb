@@ -13,11 +13,16 @@ class TweetsController < ApplicationController
   end
 
   def search
+
+    #API接続
     client = access_key()
+
+    #初期化
     @tweets = []
     history_check()
     @setoptions = setvalue_check()    
     @keywords = cookies[:history_keyword]
+    searchtype = "recent"
     since_id = nil
 
     # 検索ワードが存在したらツイートを取得
@@ -25,15 +30,27 @@ class TweetsController < ApplicationController
       @keyword = params[:keyword]
       cookies[:history_keyword] << params[:keyword]
       @keywords = cookies[:history_keyword]
-      # リツイートを除く、検索ワードにひっかかった最新ツイートを取得する
-      tweets = client.search(params[:keyword], count: @setoptions[:searchvalue], result_type: "recent", exclude: "retweets", since_id: since_id)
+      if @setoptions[:searchorder] == 1 then
+        searchtype = "recent"
+      elsif @setoptions[:searchorder] == 2 then
+        searchtype = "popular"
+      end
+      # リツイートを除く、検索ワードにひっかかったツイートを取得する
+      tweets = client.search(params[:keyword], count: @setoptions[:searchvalue], result_type: searchtype, exclude: "retweets", since_id: since_id)
       # 取得したツイートをモデルに渡す
       tweets.take(@setoptions[:searchvalue]).each do |tw|
-        if (tw.full_text =~ /http:\/\/|https:\/\//) then
-          tweet = Tweet.new(tw.full_text)
-          unless (tweet.hyperlink =~ /https:\/\/twitter.com/) then
-            @tweets << tweet
+        if @setoptions[:searchdisplay] == 1 then
+          #httpが付いているツイートのみを取得
+          if (tw.full_text =~ /http:\/\/|https:\/\//) then
+            tweet = Tweet.new(tw.full_text)
+            unless (tweet.hyperlink =~ /https:\/\/twitter.com/) then
+              @tweets << tweet
+            end
           end
+        else
+          #全取得
+          tweet = Tweet.new(tw.full_text)
+          @tweets << tweet
         end
       end
     end
