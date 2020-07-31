@@ -29,7 +29,7 @@
 .ShowField {
   height: calc(100vh - 138px);
   width: calc(100vw - 300px);
-  background-color: #202030;
+  background-color: var(--back-color);
   // display: flex;
   // flex-direction: column;
   align-items: center;
