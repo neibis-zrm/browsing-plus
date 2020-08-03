@@ -54,3 +54,5 @@ production:
   password: <%= ENV['DATABASE_PASSWORD'] %>
   socket: /var/lib/mysql/mysql.sock
 
+production: <%= ENV['CLEARDB_DATABASE_URL'] %>
+
