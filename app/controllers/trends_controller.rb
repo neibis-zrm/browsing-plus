@@ -3,21 +3,15 @@ class TrendsController < ApplicationController
     client = access_key()
     @trendtree = []
 
-    # 日本リージョンのトレンドを取得
-    trends = client.trends_place(23424856)
-    trendnames = []
-    trends.attrs[:trends].each do |trend|
-      trendnames << trend[:name]
+    # 各リージョンのトレンドを取得
+    Trend::AREA_DATA.each do |area|
+      trends = client.trends_place(area[:woeid])
+      trendnames = []
+      trends.attrs[:trends].each do |trend|
+        trendnames << trend[:name]
+      end
+      @trendtree << {region: area[:name], trends: trendnames}
     end
-    @trendtree << {region: "Japan", trends: trendnames}
-
-    # アメリカリージョンのトレンドを取得
-    trends = client.trends_place(23424977)
-    trendnames = []
-    trends.attrs[:trends].each do |trend|
-      trendnames << trend[:name]
-    end
-    @trendtree << {region: "United States", trends: trendnames}
 
   end
 
