@@ -3,7 +3,7 @@ class TweetsController < ApplicationController
     @tweets = []
     # cookies[:history_keyword] = nil
     history_check()
-    @setoptions = setvalue_check()    
+    @setoptions = setvalue_check() 
     @keywords = cookies[:history_keyword]
     @keyword = ""
     respond_to do |format|
@@ -82,11 +82,11 @@ class TweetsController < ApplicationController
   def setvalue_check()
     #設定値なしの場合は初期値を作成
     if cookies[:option] == nil then
-      cookies[:option] = "searchvalue=10&searchorder=1&searchdisplay=1&displaybgc=1"
+      cookies[:option] = "searchvalue=10&searchorder=1&searchdisplay=1&displaybgc=1&trendsetting=1|9"
     end
 
     #初期化
-    setoptions = {searchvalue: 10, searchorder: 1, searchdisplay: 1,displaybgc: 1}
+    setoptions = {searchvalue: 10, searchorder: 1, searchdisplay: 1,displaybgc: 1,trendsetting: [1,9]}
 
     #分解
     begin      
@@ -102,6 +102,9 @@ class TweetsController < ApplicationController
         end
         if optionname.split("=")[0] == "displaybgc"
           setoptions[:displaybgc] = optionname.split("=")[1].to_i
+        end
+        if optionname.split("=")[0] == "trendsetting"
+          setoptions[:trendsetting] = optionname.split("=")[1].split("|")
         end
       end
     rescue => exception

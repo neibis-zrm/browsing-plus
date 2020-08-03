@@ -1,5 +1,5 @@
 .Wrapper
   = render partial: "modules/header"
   .Wrapper__main
-    = render partial: "modules/rank", locals: {region: "Japan"}
-    = render partial: "modules/rank", locals: {region: "United States"}
+    - @setoptions[:trendsetting].each do |area|
+      = render partial: "modules/rank", locals: {region: Trend::AREA_DATA.find{|x| x[:id].to_s.include?(area)}[:name]}

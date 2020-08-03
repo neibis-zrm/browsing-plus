@@ -36,8 +36,11 @@
       text-align: right;
       padding-right: 15px;
     }
-    &--select {
+    &--select{
       height: 30px;
+    }
+    &--select2{
+      line-height: 30px;
     }
   }
   &__btm{
@@ -46,4 +49,12 @@
     margin-top: 10px;
     padding: 3px 10px;
   }
+}
+.select2-selection__rendered {
+  line-height: 30px;
+  font-size: 12px;
+}
+
+.select2-results__options {
+  font-size: 12px;
 }

@@ -81,3 +81,5 @@ group :development, :test do
   gem 'capistrano-rails'
   gem 'capistrano3-unicorn'
 end
+# include select2 gem
+gem 'select2-rails'
