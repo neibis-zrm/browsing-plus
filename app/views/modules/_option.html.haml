@@ -22,6 +22,16 @@
               = form.check_box :searchdisplay, checked: @searchdisplay_check, class: "Option__item--knob"
     .Option__field
       .Option__title
+        トレンド設定
+      %ul.Option__list
+        %table.Option__table
+          %tr.Option__item
+            %th.Option__item--name
+              地域
+            %th.Option__item--value
+              = form.select :trendsetting ,options_for_select(Trend::AREA_DATA.map{|t| [t[:name], t[:id]]}, @setoptions[:trendsetting]), {include_hidden: false } ,{class: "Option__item--select2 js-searchable", multiple: true}
+    .Option__field
+      .Option__title
         画面設定
       %ul.Option__list
         %table.Option__table

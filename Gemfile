@@ -68,3 +68,6 @@ gem 'jquery-ui-rails'
 
 # include Nokogiri gem
 gem 'nokogiri'
+
+# include select2 gem
+gem 'select2-rails'

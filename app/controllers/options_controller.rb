@@ -2,6 +2,7 @@ class OptionsController < ApplicationController
   def index
     # cookies[:option] = nil
     @setoptions = setvalue_check()
+    
     if @setoptions[:searchdisplay] == 1 then
       @searchdisplay_check = "checked"
     else
@@ -15,12 +16,22 @@ class OptionsController < ApplicationController
   end
 
   def create
+
     #cookieを設定
     cookiestr = ""
     cookiestr += "searchvalue=#{params[:searchvalue]}&"
     cookiestr += "searchorder=#{params[:searchorder]}&"
     cookiestr += "searchdisplay=#{params[:searchdisplay]}&"
-    cookiestr += "displaybgc=#{params[:displaybgc]}"
+    cookiestr += "displaybgc=#{params[:displaybgc]}&"
+
+    trendsets = ""
+    params[:trendsetting].each do |t|
+      trendsets += "#{t}|" 
+    end
+    unless trendsets == "" then
+      trendsets = trendsets.chop
+    end
+    cookiestr += "trendsetting=#{trendsets}"
 
     cookies[:option] = cookiestr
 
@@ -41,11 +52,11 @@ class OptionsController < ApplicationController
   def setvalue_check()
     #設定値なしの場合は初期値を作成
     if cookies[:option] == nil then
-      cookies[:option] = "searchvalue=10&searchorder=1&searchdisplay=1&displaybgc=1"
+      cookies[:option] = "searchvalue=10&searchorder=1&searchdisplay=1&displaybgc=1&trendsetting=1|9"
     end
 
     #初期化
-    setoptions = {searchvalue: 10, searchorder: 1, searchdisplay: 1,displaybgc: 1}
+    setoptions = {searchvalue: 10, searchorder: 1, searchdisplay: 1,displaybgc: 1,trendsetting: [1,9]}
 
     #分解
     begin      
@@ -61,6 +72,9 @@ class OptionsController < ApplicationController
         end
         if optionname.split("=")[0] == "displaybgc"
           setoptions[:displaybgc] = optionname.split("=")[1].to_i
+        end
+        if optionname.split("=")[0] == "trendsetting"
+          setoptions[:trendsetting] = optionname.split("=")[1].split("|")
         end
       end
     rescue => exception
