@@ -7,10 +7,6 @@ $(function(){
     return html;
   }
 
-  $(".ShowField__line").on('click', function(e){
-    console.log("click")
-  });
-
   $(".ShowField__line").tooltip({
     content: function() {
       return buildHTML_tooltip($(this).parent().data("contents"));

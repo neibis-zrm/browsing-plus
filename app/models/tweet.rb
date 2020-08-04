@@ -74,11 +74,6 @@ class Tweet < ApplicationRecord
       logger.debug(error)
       return ""
     end
-    #---------------------------------------------
-    # doc.xpath('').each do |node|
-    #   # タイトルの取得
-    #   return node.css('h1').inner_text
-    # end
 
   end
 end
