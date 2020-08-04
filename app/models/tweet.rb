@@ -1,6 +1,7 @@
 require 'net/http'
 require 'open-uri'
 require 'uri'
+require 'mechanize'
 
 class Tweet < ApplicationRecord
   # 初期化
@@ -13,13 +14,11 @@ class Tweet < ApplicationRecord
       if contents.include?("http://")
         @contents = contents.gsub(%r{http?://[\w_.!*\/')(-]+}, "")
         hyperlink = contents.match(%r{http?://[\w_.!*\/')(-]+})
-        @hyperlink = expand_url(hyperlink)
-        @title = expand_node(@hyperlink.to_s)
+        @hyperlink = expand_urlnode(hyperlink.to_s)
       elsif contents.include?("https://")
         @contents = contents.gsub(%r{https?://[\w_.!*\/')(-]+},"")
         hyperlink = contents.match(%r{https?://[\w_.!*\/')(-]+})
-        @hyperlink = expand_url(hyperlink.to_s)
-        @title = expand_node(@hyperlink.to_s)
+        @hyperlink = expand_urlnode(hyperlink.to_s)
       else
         @contents = ""
         @hyperlink = ""
@@ -44,41 +43,25 @@ class Tweet < ApplicationRecord
 
   private
 
-  def expand_url(url)
+  def expand_urlnode(url)
+
+    mecha = Mechanize.new
+    mecha.redirect_ok = false
     begin
-      response = Net::HTTP.get_response(URI.parse(url))
-    rescue
+      response = mecha.get(url)
+      status_code = response.code
+      if status_code[/3\d\d/]
+        return expand_urlnode(response.header['location'])
+      else
+        @title = response.search('title').inner_text
+        return url
+      end
+    rescue => error
+      logger.error(error)
+      @title = ""
       return url
     end
-    case response
-    when Net::HTTPRedirection
-      expand_url(response['location'])
-    else
-      url
-    end
-  end
-
-  def expand_node(url)  
-
-    begin
-      charset = nil
-      html = open(url) do |f|
-        charset = f.charset # 文字種別を取得
-        f.read # htmlを読み込んで変数htmlに渡す
-      end
-      # htmlをパース(解析)してオブジェクトを作成
-      doc = Nokogiri::HTML.parse(html, nil, charset)
-      # タイトルの取得
-      return doc.title
-    rescue => error
-      logger.debug(error)
-      return ""
-    end
-    #---------------------------------------------
-    # doc.xpath('').each do |node|
-    #   # タイトルの取得
-    #   return node.css('h1').inner_text
-    # end
 
   end
+
 end
