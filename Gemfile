@@ -66,8 +66,9 @@ gem "twitter"
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 
-# include Nokogiri gem
+# include scraping gem
 gem 'nokogiri'
+gem 'mechanize'
 
 # include select2 gem
 gem 'select2-rails'
