@@ -25,6 +25,12 @@ class OptionsController < ApplicationController
     cookiestr += "displaybgc=#{params[:displaybgc]}&"
 
     trendsets = ""
+
+    #何も選択していない場合は初期値にする
+    if params[:trendsetting] == nil then
+      params[:trendsetting] = ["1","9"]
+    end
+
     params[:trendsetting].each do |t|
       trendsets += "#{t}|" 
     end
