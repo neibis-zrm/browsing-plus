@@ -1,24 +1,24 @@
-# README
+# browsing-plus
+====
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+- This app can be show tweets with url from twitter search terms
 
-Things you may want to cover:
+## Requirement
+- Confirmed by google chrome ver 84 and above
 
-* Ruby version
+## Usage
+- 検索
 
-* System dependencies
+Enter a search term to show in the textbox
 
-* Configuration
+- トレンド
 
-* Database creation
+Show trends by region
 
-* Database initialization
+- 設定
 
-* How to run the test suite
+Configure the app
 
-* Services (job queues, cache servers, search engines, etc.)
+## Author
 
-* Deployment instructions
-
-* ...
+[neibis-zrm](https://github.com/neibis-zrm)
