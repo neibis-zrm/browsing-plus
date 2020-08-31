@@ -19,6 +19,9 @@ Show trends by region
 
 Configure the app
 
+## URL
+[http://54.150.41.74/](http://54.150.41.74/)
+
 ## Author
 
 [neibis-zrm](https://github.com/neibis-zrm)
